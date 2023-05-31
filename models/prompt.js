@@ -19,3 +19,5 @@ const PromptSchema = new Schema({
 //Either get the prompt that already exists in the models object
 //or if it doesn't exists create a new model named Prompt
 const Prompt = models.Prompt || model("Prompt", PromptSchema);
+
+export default Prompt;
