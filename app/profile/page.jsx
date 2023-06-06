@@ -11,6 +11,7 @@ const MyProfile = () => {
   const [posts, setPosts] = useState([]);
   //Get the data, rename the data to session
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,17 +24,21 @@ const MyProfile = () => {
     if (session?.user.id) fetchPosts();
   }, []);
 
-  const handleEdit = () => {};
+  const handleEdit = (post) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
 
-  const handleDelete = async () => {};
+  const handleDelete = async (post) => {
+    console.log("Page handle delete clicked");
+  };
 
   return (
     <Profile
       name={session?.user.name}
       description="Welcome to your personalized profile page"
       data={posts}
-      handleEdit={() => {}}
-      handleDelete={() => {}}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
     />
   );
 };
