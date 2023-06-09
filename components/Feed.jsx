@@ -27,8 +27,9 @@ const Feed = () => {
     const fetchPosts = async () => {
       const response = await fetch("/api/prompt");
       const data = await response.json();
+      console.log(data);
       setPosts(data);
-      console.log("Post fetched");
+      console.log("Feed: Post fetched");
     };
     //Call the function
     fetchPosts();
