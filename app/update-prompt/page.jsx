@@ -6,6 +6,7 @@ import Form from "@components/Form";
 
 const EditPrompt = () => {
   const router = useRouter();
+  //Get the params.id
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
