@@ -23,15 +23,15 @@ const Feed = () => {
 
   const handleSearchChange = (e) => {};
 
+  const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+    console.log(data);
+    console.log("fetched post");
+    setPosts(data);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch("/api/prompt");
-      const data = await response.json();
-      console.log(data);
-      setPosts(data);
-      console.log("Feed: Post fetched");
-    };
-    //Call the function
     fetchPosts();
   }, []);
 
