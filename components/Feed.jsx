@@ -24,7 +24,16 @@ const Feed = () => {
   const handleSearchChange = (e) => {};
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const headers = new Headers();
+    headers.append(
+      "Cache-Control",
+      "no-cache, no-store, max-age=0, must-revalidate"
+    );
+
+    const response = await fetch("/api/prompt", {
+      headers,
+    });
+
     const data = await response.json();
     console.log(data);
     console.log("fetched post");
