@@ -40,6 +40,8 @@ const Feed = () => {
     setPosts(data);
   };
 
+  fetchPosts.noSSR = true;
+
   useEffect(() => {
     fetchPosts();
   }, []);
