@@ -30,7 +30,7 @@ const Feed = () => {
       "no-cache, no-store, max-age=0, must-revalidate"
     );
 
-    const response = await fetch("/api/prompt", {
+    const response = await fetch(`/api/prompt`, {
       headers,
     });
 
@@ -40,9 +40,8 @@ const Feed = () => {
     setPosts(data);
   };
 
-  fetchPosts.noSSR = true;
-
   useEffect(() => {
+    fetchPosts.noSSR = true;
     fetchPosts();
   }, []);
 
