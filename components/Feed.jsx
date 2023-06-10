@@ -29,8 +29,9 @@ const Feed = () => {
       "Cache-Control",
       "no-cache, no-store, max-age=0, must-revalidate"
     );
-
-    const response = await fetch(`/api/prompt`, {
+    //Ensure that each request is unique and not cached.
+    const randomParam = Math.random().toString(36).substring(7);
+    const response = await fetch(`/api/prompt?random=${randomParam}`, {
       headers,
     });
 
