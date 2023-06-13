@@ -21,7 +21,7 @@ const MyProfile = () => {
       console.log(data);
     };
     //Fetch only if there is a loggedin user
-    if (session?.user.id) fetchPosts();
+    fetchPosts();
   }, []);
 
   const handleEdit = (post) => {
