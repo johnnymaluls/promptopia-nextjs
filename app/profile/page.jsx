@@ -17,12 +17,12 @@ const MyProfile = () => {
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
-      await setPosts(data);
-      console.log(data);
+
+      setPosts(data);
     };
-    //Fetch only if there is a loggedin user
-    fetchPosts();
-  }, []);
+
+    if (session?.user.id) fetchPosts();
+  }, [session?.user.id]);
 
   const handleEdit = (post) => {
     router.push(`/update-prompt?id=${post._id}`);
