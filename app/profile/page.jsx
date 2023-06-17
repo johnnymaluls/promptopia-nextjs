@@ -19,12 +19,14 @@ const MyProfile = () => {
       const data = await response.json();
       setPosts(data);
     };
+
+    console.log("use effect executed");
     if (session?.user.id) {
       fetchPosts();
     } else {
       setTimeout(() => {
-        router.push("/");
-      }, 3500);
+        checkIfLoggedIn();
+      }, 2500);
     }
   }, [session?.user.id]);
 
@@ -45,6 +47,13 @@ const MyProfile = () => {
       } catch (error) {
         console.log(error);
       }
+    }
+  };
+
+  const checkIfLoggedIn = async () => {
+    const id = await session?.user.id;
+    if (!id) {
+      router.push("/");
     }
   };
 

@@ -19,7 +19,9 @@ const Profile = ({ name, description, data, handleEdit, handleDelete }) => {
           ))}
         </div>
       ) : (
-        <p>No prompts have been created yet.</p>
+        <p desc text-left>
+          No prompts have been created yet.
+        </p>
       )}
     </section>
   );
