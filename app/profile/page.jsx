@@ -14,14 +14,16 @@ const MyProfile = () => {
   const router = useRouter();
 
   useEffect(() => {
-    checkIfLoggedIn();
     const fetchPosts = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
       setPosts(data);
     };
-
-    if (session?.user.id) fetchPosts();
+    if (session?.user.id) {
+      fetchPosts();
+    } else {
+      router.push("/");
+    }
   }, [session?.user.id]);
 
   const handleEdit = (post) => {
@@ -41,12 +43,6 @@ const MyProfile = () => {
       } catch (error) {
         console.log(error);
       }
-    }
-  };
-
-  const checkIfLoggedIn = async () => {
-    if (!session?.user.id) {
-      router.push("/");
     }
   };
 
