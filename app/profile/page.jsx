@@ -22,7 +22,9 @@ const MyProfile = () => {
     if (session?.user.id) {
       fetchPosts();
     } else {
-      router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 3500);
     }
   }, [session?.user.id]);
 
