@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import PromptCard from "@components/PromptCard";
+import Loading from "@components/Loading";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -22,6 +23,7 @@ const Feed = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [allPrompts, setAllPrompts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
@@ -47,8 +49,10 @@ const Feed = () => {
   };
 
   const fetchPosts = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/prompt");
     const data = await response.json();
+    setIsLoading(false);
     setAllPrompts(data);
   };
 
@@ -73,11 +77,21 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      {/* Render Prompts */}
-      {searchText ? (
-        <PromptCardList data={searchResult} handleTagClick={handleTagClick} />
+
+      {isLoading ? (
+        <Loading />
       ) : (
-        <PromptCardList data={allPrompts} handleTagClick={handleTagClick} />
+        <div>
+          {/* Render Prompts */}
+          {searchText ? (
+            <PromptCardList
+              data={searchResult}
+              handleTagClick={handleTagClick}
+            />
+          ) : (
+            <PromptCardList data={allPrompts} handleTagClick={handleTagClick} />
+          )}
+        </div>
       )}
     </section>
   );
