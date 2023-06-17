@@ -20,9 +20,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+        <div className="flex-1 flex justify-start items-center gap-3">
           <Image
-            src={post.creator.image}
+            src={
+              post.creator.image
+                ? post.creator.image
+                : "/assets/images/user.svg"
+            }
             alt="user_image"
             width={40}
             height={40}
