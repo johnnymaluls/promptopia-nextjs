@@ -72,8 +72,8 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    //fetchPosts();
-    getServerData();
+    fetchPosts();
+    //getServerData();
     console.log("useEffect gumana");
   }, []);
 
