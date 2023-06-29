@@ -51,12 +51,7 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     setIsLoading(true);
-    const response = await fetch("/api/prompt", {
-      next: { revalidate: 1 },
-      headers: {
-        "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
-      },
-    });
+    const response = await fetch("/api/prompt", { cache: "no-store" });
     const data = await response.json();
     console.log(data);
     setIsLoading(false);
