@@ -9,7 +9,7 @@ export const GET = async (request) => {
     const prompts = await Prompt.find({}).populate("creator");
 
     const headers = {
-      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Cache-Control": "max-age=300",
     };
 
     return new Response(JSON.stringify(prompts), {

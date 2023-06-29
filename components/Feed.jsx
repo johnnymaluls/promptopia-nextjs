@@ -68,14 +68,6 @@ const Feed = () => {
     setSearchResult(filterPrompts(tagName));
   };
 
-  const getServerData = async () => {
-    setIsLoading(true);
-    const data = await getStaticProps();
-    console.log(data);
-    setIsLoading(false);
-    setAllPrompts(data);
-  };
-
   useEffect(() => {
     fetchPosts();
     console.log("useEffect gumana");
