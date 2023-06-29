@@ -53,6 +53,9 @@ const Feed = () => {
     setIsLoading(true);
     const response = await fetch("/api/prompt", {
       next: { revalidate: 0 },
+      headers: {
+        "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      },
     });
     const data = await response.json();
     console.log(data);
@@ -67,7 +70,7 @@ const Feed = () => {
 
   const getServerData = async () => {
     setIsLoading(true);
-    const data = await getServerSideProps();
+    const data = await getStaticProps();
     console.log(data);
     setIsLoading(false);
     setAllPrompts(data);
@@ -75,7 +78,6 @@ const Feed = () => {
 
   useEffect(() => {
     fetchPosts();
-    //getServerData();
     console.log("useEffect gumana");
   }, []);
 

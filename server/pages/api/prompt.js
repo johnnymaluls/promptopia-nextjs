@@ -12,3 +12,15 @@ export const getServerSideProps = async () => {
 
   return data;
 };
+
+export async function getStaticProps() {
+  const res = await fetch("/api/prompt");
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 0,
+  };
+}
