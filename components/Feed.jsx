@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import PromptCard from "@components/PromptCard";
 import Loading from "@components/Loading";
+import { getServerSideProps } from "@server/pages/api/prompt";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -52,6 +53,7 @@ const Feed = () => {
     setIsLoading(true);
     const response = await fetch("/api/prompt");
     const data = await response.json();
+    console.log(data);
     setIsLoading(false);
     setAllPrompts(data);
   };
@@ -61,8 +63,18 @@ const Feed = () => {
     setSearchResult(filterPrompts(tagName));
   };
 
+  const getServerData = async () => {
+    setIsLoading(true);
+    const data = await getServerSideProps();
+    console.log(data);
+    setIsLoading(false);
+    setAllPrompts(data);
+  };
+
   useEffect(() => {
-    fetchPosts();
+    //fetchPosts();
+    getServerData();
+    console.log("useEffect gumana");
   }, []);
 
   return (
